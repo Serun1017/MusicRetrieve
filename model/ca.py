@@ -112,4 +112,4 @@ class CrossAttention(nn.Module) :
 
     def forward(self, sample_sa_fea, origin_sa_fea) :
         x_sampe, x_origin = self.encoder(sample_sa_fea, origin_sa_fea, None)
-        return x_sampe, x_origin
+        return torch.cat((x_sampe, x_origin), dim=0)
