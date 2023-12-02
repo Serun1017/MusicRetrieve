@@ -15,7 +15,7 @@ class Patch_Embedding(nn.Module) :
         if type == 'origin' :
             self.seq = nn.Sequential(
                 # Input Origin audio file must be 16kHz 4 min [2 * 2 * 10 * 24]. scale embedding to 0.25 sec at each token
-                nn.Conv1d(in_channels=1, out_channels=64, kernel_size=args.audio_sampling_rate*10, stride=args.audio_sampling_rate // 4 // 4, padding=int(args.audio_sampling_rate*5) - 1, padding_mode='zeros', bias=False), # [3840] = each token contains 10 sec sample of audio, stride means 0.0625 sec
+                nn.Conv1d(in_channels=2, out_channels=64, kernel_size=args.audio_sampling_rate*10, stride=args.audio_sampling_rate // 4 // 4, padding=int(args.audio_sampling_rate*5) - 1, padding_mode='zeros', bias=False), # [3840] = each token contains 10 sec sample of audio, stride means 0.0625 sec
                 nn.ReLU(),
                 nn.Conv1d(64, 256, 16, 4, 8, padding_mode='zeros', bias=False), # [960] = each token means 1 sec, stride means 0.25 sec
                 nn.ReLU(),
@@ -26,7 +26,7 @@ class Patch_Embedding(nn.Module) :
         else :
             self.seq = nn.Sequential(
                 # Input Sample audio file must be 16kHz 10 sec
-                nn.Conv1d(1, 256, args.audio_sampling_rate*1, args.audio_sampling_rate // 4 // 4, args.audio_sampling_rate // 2, padding_mode='zeros', bias=False), # [160] = each token means 1 sec, stride means 0.0625 sec
+                nn.Conv1d(2, 256, args.audio_sampling_rate*1, args.audio_sampling_rate // 4 // 4, args.audio_sampling_rate // 2, padding_mode='zeros', bias=False), # [160] = each token means 1 sec, stride means 0.0625 sec
                 nn.ReLU(),
                 nn.Conv1d(256, 768, 4, 1, 1, padding_mode='zeros',bias=False), # [160] = each token means 0.25 sec
             )

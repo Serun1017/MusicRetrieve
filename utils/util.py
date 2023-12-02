@@ -8,6 +8,7 @@ import torch
 import numpy as np
 from torch.optim import AdamW
 
+# code by https://github.com/buptLinfy/ZSE-SBIR
 
 def build_optimizer(args, model):
 

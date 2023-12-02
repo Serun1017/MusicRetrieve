@@ -16,9 +16,9 @@ def valid_cls(args, model, sample_valid_data, origin_valid_data):
     torch.set_grad_enabled(False)
 
     print('loading image data')
-    sample_dataload = DataLoader(sample_valid_data, batch_size=args.test_sk, num_workers=args.num_workers, drop_last=False)
+    sample_dataload = DataLoader(sample_valid_data, batch_size=args.test_sample_batch, num_workers=args.num_workers, drop_last=False)
     print('loading sketch data')
-    origin_dataload = DataLoader(origin_valid_data, batch_size=args.test_im, num_workers=args.num_workers, drop_last=False)
+    origin_dataload = DataLoader(origin_valid_data, batch_size=args.test_origin_batch, num_workers=args.num_workers, drop_last=False)
 
     dist_im = None
     all_dist = None

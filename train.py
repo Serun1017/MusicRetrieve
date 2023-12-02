@@ -22,7 +22,7 @@ def train():
     # batch=15, lr=1e-5 / batch=30, lr=2e-5
     optimizer = build_optimizer(args, model)
 
-    train_data_loader = DataLoader(train_data, args.batch, num_workers=2, drop_last=True)
+    train_data_loader = DataLoader(train_data, args.batch, num_workers=2, drop_last=False)
 
     start_epoch = 0
     accuracy = 0
@@ -43,7 +43,7 @@ def train():
             sample, origin = sample.cuda(), origin.cuda()
 
             # prepare rn truth
-            target_rn = torch.cat((torch.ones(sample_label.size()), torch.zeros(sample_label.size())), dim=0)
+            target_rn = torch.cat((torch.ones(len(sample_label)), torch.zeros(len(sample_label))), dim=0)
             target_rn = torch.clamp(target_rn, 0.01, 0.99).unsqueeze(dim=1)
             target_rn = target_rn.cuda()
 

@@ -9,8 +9,8 @@ from torch.utils.data import DataLoader
 from torchaudio import transforms
 
 def load_data_test(args) :
-    sample_valid_data = ValidSet(args.valid_sample_data, type_skim='sample', half=True)
-    origin_valid_data = ValidSet(args.valid_origin_data, type_skim='origin', half=True)
+    sample_valid_data = ValidSet(args.test_sample_data, type_skim='sample', half=True)
+    origin_valid_data = ValidSet(args.test_origin_data, type_skim='origin', half=True)
     return sample_valid_data, origin_valid_data
 
 def load_data(args) :
@@ -26,7 +26,7 @@ class TrainSet(data.Dataset) :
         self.sample_data_neg = copy.deepcopy(self.sample_data)
         self.origin_data_neg = copy.deepcopy(self.origin_data)
 
-        self.origin_data_neg.roll()
+        self.sample_data_neg.roll(-11)
 
     def __getitem__(self, index):
         sample_data, sample_label = self.sample_data.__getitem__(index)
@@ -75,9 +75,9 @@ class ValidSet(data.Dataset) :
     def __len__(self) :
         return len(self.file_names)
     
-    def roll(self) :
-        self.file_names = np.roll(self.file_names, shift=-1)
-        self.cls = np.roll(self.cls, shift=-1)
+    def roll(self, shift) :
+        self.file_names = np.roll(self.file_names, shift=shift)
+        self.cls = np.roll(self.cls, shift=shift)
 
 def preprocess(file_name, noise=False) :
     waveform, sampling_rate = torchaudio.load(file_name)
@@ -95,7 +95,7 @@ def preprocess(file_name, noise=False) :
     return transform(waveform)
 
 if __name__ == '__main__' :
-    validset = TrainSet('./test_wav', './test_wav')
+    validset = TrainSet('./dataset/valid/sample', './dataset/valid/origin')
     test_loader = DataLoader(validset, batch_size=10, num_workers=2, drop_last=False)
 
     for index, (sample, origin, sample_neg, origin_neg, sample_label, origin_label, sample_label_neg, origin_label_neg) in enumerate(tqdm(test_loader)) :
