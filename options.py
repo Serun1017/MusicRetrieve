@@ -14,8 +14,8 @@ class Option:
         parser.add_argument('--valid_origin_data', type=str, default='./test_data/origin')
 
         # test set
-        parser.add_argument('--test_sample_data', type=str, default='./dataset/test/sample')
-        parser.add_argument('--test_origin_data', type=str, default='./dataset/test/origin')
+        parser.add_argument('--test_sample_data', type=str, default='./test_data/sample')
+        parser.add_argument('--test_origin_data', type=str, default='./test_data/origin')
 
         # train
         parser.add_argument('--save', '-s', type=str, default='./checkpoints')
@@ -28,8 +28,8 @@ class Option:
         # test
         parser.add_argument('--load', '-l', type=str, default='./checkpoints/best_checkpoint.pth')
         parser.add_argument('--testall', default=False, action='store_true', help='train/test scale')
-        parser.add_argument('--test_sample_batch', type=int, default=20)
-        parser.add_argument('--test_origin_batch', type=int, default=20)
+        parser.add_argument('--test_sample_batch', type=int, default=10)
+        parser.add_argument('--test_origin_batch', type=int, default=10)
         parser.add_argument('--num_workers', type=int, default=4)
 
         # other

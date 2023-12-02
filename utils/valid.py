@@ -24,9 +24,9 @@ def valid_cls(args, model, sample_valid_data, origin_valid_data):
     all_dist = None
     for i, (sample, sample_label) in enumerate(tqdm(sample_dataload)):
         if i == 0:
-            all_sample_label = sample_label.numpy()
+            all_sample_label = np.asarray(sample_label)
         else:
-            all_sample_label = np.concatenate((all_sample_label, sample_label.numpy()), axis=0)
+            all_sample_label = np.concatenate((all_sample_label, np.asarray(sample_label)), axis=0)
 
         sample_len = sample.size(0)
         sample = sample.cuda()
@@ -35,9 +35,9 @@ def valid_cls(args, model, sample_valid_data, origin_valid_data):
         for j, (origin, origin_label) in enumerate(tqdm(origin_dataload)):
             
             if i == 0 and j == 0:
-                all_origin_label = origin_label.numpy()
+                all_origin_label = np.asarray(origin_label)
             elif i == 0 and j > 0:
-                all_origin_label = np.concatenate((all_origin_label, origin_label.numpy()), axis=0)
+                all_origin_label = np.concatenate((all_origin_label, np.asarray(origin_label)), axis=0)
 
             origin_len = origin.size(0)
             origin = origin.cuda()

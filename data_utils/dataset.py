@@ -53,8 +53,8 @@ class ValidSet(data.Dataset) :
                     file_path = os.path.join(root, file)
                     cls = os.path.basename(os.path.dirname(file_path))
 
-                    self.file_names = np.append(self.file_names, [file_path], axis=0)
-                    self.cls = np.append(self.cls, [cls], axis=0)
+                    self.file_names = np.append(self.file_names, [file_path])
+                    self.cls = np.append(self.cls, [cls])
 
     def __getitem__(self, index) :
         label = self.cls[index]
