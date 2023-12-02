@@ -2,6 +2,8 @@ import torch
 import torch.nn as nn
 from torch import Tensor
 
+# code basic by https://github.com/buptLinfy/ZSE-SBIR
+
 class RelationNetwork(nn.Module) :
     def __init__(self, anchor, dropout=0.1) :
         super(RelationNetwork, self).__init__()
@@ -14,7 +16,6 @@ class RelationNetwork(nn.Module) :
             nn.ReLU(inplace=True),
             nn.Dropout(dropout),
             nn.Linear(160, 1, bias=True)
-
         )
 
     # return the distance as [0 ~ 1]

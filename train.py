@@ -11,6 +11,7 @@ from utils.util import build_optimizer, save_checkpoint, setup_seed
 from utils.loss import triplet_loss, rn_loss
 from utils.valid import valid_cls
 
+# code by https://github.com/buptLinfy/ZSE-SBIR. some variable name has been changed
 
 def train():
     train_data, sample_valid_data, origin_valid_data = load_data(args)

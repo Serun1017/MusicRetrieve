@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 
+# code by https://github.com/buptLinfy/ZSE-SBIR
 
 def triplet_loss(x, args):
     """

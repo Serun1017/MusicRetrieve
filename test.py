@@ -9,9 +9,11 @@ from utils.util import setup_seed, load_checkpoint
 
 from utils.valid import valid_cls
 
+# code basic by https://github.com/buptLinfy/ZSE-SBIR
+
 def test():
     # prepare data
-    sk_valid_data, im_valid_data = load_data_test(args)
+    sample_valid_data, origin_valid_data = load_data_test(args)
 
     # prepare model
     model = Model(args)
@@ -30,7 +32,7 @@ def test():
     model = model.cuda()
 
     # valid
-    map_all, map_200, precision_100, precision_200 = valid_cls(args, model, sk_valid_data, im_valid_data)
+    map_all, map_200, precision_100, precision_200 = valid_cls(args, model, sample_valid_data, origin_valid_data)
     print(f'map_all:{map_all:.4f} map_200:{map_200:.4f} precision_100:{precision_100:.4f} precision_200:{precision_200:.4f}')
 
 

@@ -4,6 +4,9 @@ import torch.nn as nn
 from einops import rearrange, repeat
 import math
 
+# code basic by https://github.com/buptLinfy/ZSE-SBIR. Patch_Embedding has been added and some parameters has been changed
+# applying 'Zero-shot Everything Sketch-Based Image Retrieval, and in Explainable Style' paper to music retrieval system by sample of audio
+
 # Scale Embedding of origin or sample audio file. -> [768, 160]
 class Patch_Embedding(nn.Module) :
     def __init__(self, args, type='origin') :

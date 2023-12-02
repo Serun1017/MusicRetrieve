@@ -4,6 +4,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+# code by https://github.com/buptLinfy/ZSE-SBIR
+
 def clones(module, N) :
     return nn.ModuleList([copy.deepcopy(module) for _ in range(N)])
 
