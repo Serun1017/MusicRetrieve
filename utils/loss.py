@@ -4,17 +4,11 @@ import torch.nn as nn
 # code by https://github.com/buptLinfy/ZSE-SBIR
 
 def triplet_loss(x, args):
-    """
-
-    :param x: 4*batch -> sk_p, sk_n, im_p, im_n
-    :param args:
-    :return:
-    """
     triplet = nn.TripletMarginLoss(margin=1.0, p=2).cuda()
-    sk_p = x[0:args.batch]
-    im_p = x[2 * args.batch:3 * args.batch]
-    im_n = x[3 * args.batch:]
-    loss = triplet(sk_p, im_p, im_n)
+    sample_p = x[0:args.batch]
+    origin_p = x[2 * args.batch:3 * args.batch]
+    origin_n = x[3 * args.batch:]
+    loss = triplet(sample_p, origin_p, origin_n)
 
     return loss
 

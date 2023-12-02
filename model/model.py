@@ -18,7 +18,6 @@ class Model(nn.Module) :
 
         self.relation_network = RelationNetwork(160)
 
-
     def forward(self, sample_music, origin_music, stage='train', only_sa=False) :
         if stage == 'train' :
             # sa_feas of each music [batch, token, channel]

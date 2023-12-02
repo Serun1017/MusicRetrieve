@@ -5,13 +5,13 @@ class Option:
         parser = argparse.ArgumentParser(description="args for model")
 
         # dataset 
-        parser.add_argument('--train_sample_data', type=str, default='./dataset/train/sample')
-        parser.add_argument('--train_origin_data', type=str, default='./dataset/train/origin')
+        parser.add_argument('--train_sample_data', type=str, default='./test_data/sample')
+        parser.add_argument('--train_origin_data', type=str, default='./test_data/origin')
         parser.add_argument('--audio_sampling_rate', type=int, default=16000) # default 16kHz
 
         # valid set
-        parser.add_argument('--valid_sample_data', type=str, default='./dataset/valid/sample')
-        parser.add_argument('--valid_origin_data', type=str, default='./dataset/valid/origin')
+        parser.add_argument('--valid_sample_data', type=str, default='./test_data/sample')
+        parser.add_argument('--valid_origin_data', type=str, default='./test_data/origin')
 
         # test set
         parser.add_argument('--test_sample_data', type=str, default='./dataset/test/sample')
@@ -19,7 +19,7 @@ class Option:
 
         # train
         parser.add_argument('--save', '-s', type=str, default='./checkpoints')
-        parser.add_argument('--batch', type=int, default=20)
+        parser.add_argument('--batch', type=int, default=10)
         parser.add_argument('--epoch', type=int, default=30)
         parser.add_argument('--datasetLen', type=int, default=10000)
         parser.add_argument('--learning_rate', type=float, default=1e-5)
