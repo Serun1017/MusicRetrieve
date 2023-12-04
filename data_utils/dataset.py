@@ -9,8 +9,8 @@ from torch.utils.data import DataLoader
 from torchaudio import transforms
 
 def load_data_test(args) :
-    sample_valid_data = ValidSet(args.test_sample_data, type_skim='sample', half=True)
-    origin_valid_data = ValidSet(args.test_origin_data, type_skim='origin', half=True)
+    sample_valid_data = ValidSet(args.test_sample_data, type_skim='sample', half=False)
+    origin_valid_data = ValidSet(args.test_origin_data, type_skim='origin', half=False)
     return sample_valid_data, origin_valid_data
 
 def load_data(args) :
